@@ -5,11 +5,13 @@ var drumElements=document.querySelectorAll(".drum");
 for(var i=0;i<drumElements.length;i++){
   drumElements[i].addEventListener("click",function(){
   rollDrum(this.innerHTML);
+  addAnimation(this.innerHTML);
 });
 }
 
 document.addEventListener('keypress',function(event){
   rollDrum(event.key);
+  addAnimation(event.key);
 }
 );
 
@@ -38,4 +40,12 @@ function rollDrum(key){
       break;
     default: console.log("Key to press "+key);
   }
+}
+
+function addAnimation(key){
+  document.querySelector("."+key).classList.add("pressed");
+
+  setTimeout(function(){
+    document.querySelector("."+key).classList.remove("pressed");
+  },100);
 }
